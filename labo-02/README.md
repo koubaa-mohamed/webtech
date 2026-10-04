@@ -21,7 +21,7 @@ Vul de eerste twee kolommen in vóór je de pagina opent. Trede: herkomst, speci
 | 1 | groen | Herkomst: eigen css wint van de browserstijl | groen | ja |
 | 2 | blauw | Volgorde: de laatste regel wint | blauw | ja |
 | 3 | rood | Specificiteit: class wint van de elementselector | rood | ja |
-| 4 | rood | Matching: .v4 wint van a, .v4 > a raakt de link niet | rood | ja |
+| 4 | rood | Specificiteit: .v4 a wint van a; .v4 > a raakt de link niet | rood | ja |
 | 5 | blauw | Specificiteit: id wint van de 3 classes | blauw | ja |
 | 6 | blauw | Rechtstreekse kleur wint van overerving | blauw | ja |
 | 7 | rood | Overerving: kleur komt van de class: .v7 | rood | ja |
@@ -47,19 +47,18 @@ De regel nav a:hover, nav a:focus kostte me het meeste tijd, omdat ik de : voor 
 
 - Welke drie waarden staan in je tokenblok, en waarom die?
 
-Mijn tokenblok bevat onder andere de achtergrondkleur `#fbf7f0`, de tekstkleur `#2b2b2b` en het lettertype `Verdana`. De achtergrondkleur geeft de site een rustige basis, de tekstkleur zorgt voor leesbare tekst en het lettertype houdt de vier pagina's gelijk. Daarnaast staan ook de accentkleur, de gedempte kleur, de tekstmaat en de regelhoogte in het tokenblok.
+Mijn tokenblok bevat onder andere de achtergrondkleur #fbf7f0, de tekstkleur #2b2b2b en het lettertype Verdana. De achtergrondkleur geeft de site een neutrale basis, de tekstkleur zorgt voor leesbare tekst en het lettertype houdt de vier pagina's gelijk. Daarnaast staan ook de accentkleur, de gedempte kleur, de tekstmaat en de regelhoogte in het tokenblok.
 
 - Wat verandert er in je site als je één token wijzigt?
 
-Alle regels die dat token met `var()` gebruiken veranderen mee. Als ik bijvoorbeeld `--accentkleur` aanpas, veranderen de navigatielinks en koppen op alle vier de pagina's. Ik hoef die kleur dus maar op één plaats aan te passen.
+Alle regels die dat token met var() gebruiken veranderen mee. Als ik bijvoorbeeld --accentkleur ga aanpassen, veranderen de navigatielinks en koppen samen op alle vier de pagina's. Ik hoef die kleur dus maar op 1 plaats aan te passen.
 
 ## Thuis: R2.3 (met AI)
 
-De prompt staat in `review/prompt.txt` en de CSS-output van Codex in `review/output.css`. De output is bewaard zoals gegenereerd; hieronder beoordeel ik die met hoofdstuk 2 als meetlat.
+Prompt en onbewerkte output staan in `review/`. Minstens vijf bevindingen, elk met een verwijzing naar de sectie of het foutnummer:
 
-1. **Tokens (2.9):** de vijf kleuren en twee lettertypen staan in `:root` en worden met `var()` toegepast. De kleuren worden dus niet overal letterlijk herhaald.
-2. **Maten (2.8):** de lettergroottes zijn in `rem` geschreven, bijvoorbeeld `3rem` en `1.25rem`. Er is geen pixel-soep. De basis van `1rem` is normaal 16px, maar volgt de standaardlettergrootte van de browser en garandeert dus niet altijd exact 16px.
-3. **Specificiteit (2.7):** selectors zoals `nav a` en `footer p` gebruiken de structuur. Er staan geen id-selectors of `!important` in de output, zodat uitzonderingen eenvoudig blijven.
-4. **Overerving (2.6):** `body` stelt lettertype, tekstkleur en regelhoogte in. De andere elementen erven deze waarden, behalve waar een gerichte regel ze overschrijft, zoals bij de koppen.
-5. **Selectors (2.5):** `.kaart > li:nth-child(odd)` kleurt alleen de oneven directe lijstitems van de kaart. `nav a:hover, nav a:focus` gebruikt een komma voor OF en behandelt zowel de muis als het toetsenbord. De selectors zijn niet genest.
-6. **Styles-paneel (2.10):** een doorstreepte regel is niet automatisch een fout. Bij hover wordt bijvoorbeeld de gewone kleur van `nav a` bewust overschreven. Ik kan die overschrijving verklaren met specificiteit (2.7).
+1. De kleuren en lettertypen staan in :root en worden met var() gebruikt. Dat volgt de tokenregel (2.9).
+2. De lettergroottes staan in rem. 1rem is normaal 16px, maar hangt af van de browserinstelling (2.8).
+3. nav a en footer p zijn eenvoudige selectors. Er staan geen id-selectors of !important in de CSS (2.7).
+4. body geeft de tekstkleur, het lettertype en de regelhoogte door aan de andere elementen (2.6).
+5. :nth-child(odd) maakt het zebrapatroon. :hover en :focus werken voor de muis en het toetsenbord (2.5).
