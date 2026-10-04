@@ -46,14 +46,20 @@ De regel nav a:hover, nav a:focus kostte me het meeste tijd, omdat ik de : voor 
 ## 6. Je site
 
 - Welke drie waarden staan in je tokenblok, en waarom die?
+
+Mijn tokenblok bevat onder andere de achtergrondkleur `#fbf7f0`, de tekstkleur `#2b2b2b` en het lettertype `Verdana`. De achtergrondkleur geeft de site een rustige basis, de tekstkleur zorgt voor leesbare tekst en het lettertype houdt de vier pagina's gelijk. Daarnaast staan ook de accentkleur, de gedempte kleur, de tekstmaat en de regelhoogte in het tokenblok.
+
 - Wat verandert er in je site als je één token wijzigt?
+
+Alle regels die dat token met `var()` gebruiken veranderen mee. Als ik bijvoorbeeld `--accentkleur` aanpas, veranderen de navigatielinks en koppen op alle vier de pagina's. Ik hoef die kleur dus maar op één plaats aan te passen.
 
 ## Thuis: R2.3 (met AI)
 
-Prompt en onbewerkte output staan in `review/`. Minstens vijf bevindingen, elk met een verwijzing naar de sectie of het foutnummer:
+De prompt staat in `review/prompt.txt` en de CSS-output van Codex in `review/output.css`. De output is bewaard zoals gegenereerd; hieronder beoordeel ik die met hoofdstuk 2 als meetlat.
 
-1. 
-2. 
-3. 
-4. 
-5. 
+1. **Tokens (2.9):** de vijf kleuren en twee lettertypen staan in `:root` en worden met `var()` toegepast. De kleuren worden dus niet overal letterlijk herhaald.
+2. **Maten (2.8):** de lettergroottes zijn in `rem` geschreven, bijvoorbeeld `3rem` en `1.25rem`. Er is geen pixel-soep. De basis van `1rem` is normaal 16px, maar volgt de standaardlettergrootte van de browser en garandeert dus niet altijd exact 16px.
+3. **Specificiteit (2.7):** selectors zoals `nav a` en `footer p` gebruiken de structuur. Er staan geen id-selectors of `!important` in de output, zodat uitzonderingen eenvoudig blijven.
+4. **Overerving (2.6):** `body` stelt lettertype, tekstkleur en regelhoogte in. De andere elementen erven deze waarden, behalve waar een gerichte regel ze overschrijft, zoals bij de koppen.
+5. **Selectors (2.5):** `.kaart > li:nth-child(odd)` kleurt alleen de oneven directe lijstitems van de kaart. `nav a:hover, nav a:focus` gebruikt een komma voor OF en behandelt zowel de muis als het toetsenbord. De selectors zijn niet genest.
+6. **Styles-paneel (2.10):** een doorstreepte regel is niet automatisch een fout. Bij hover wordt bijvoorbeeld de gewone kleur van `nav a` bewust overschreven. Ik kan die overschrijving verklaren met specificiteit (2.7).
